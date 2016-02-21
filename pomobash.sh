@@ -65,27 +65,62 @@ interactive_mode()
 {
 
 	# Number of pomodoros in each cycle
-	echo "Introduce desired Pomo count: "
-	read POMO_NUM
+	echo "Introduce desired Pomo count (Default: 4): "
+	read POMO_NUM_IN
+
+	# Initialize with defaults if user does not input a value
+	if [ -z $POMO_NUM_IN ]
+	then
+		POMO_NUM=4
+	else
+		POMO_NUM=$POMO_NUM_IN
+	fi
 
 	# Pomodoro time (in minutes)
 	#POMO=25
-	echo "Introduce desired Pomodoro time (in minutes): "
-	read POMO_TIME
+	echo "Introduce desired Pomodoro time in minutes (Default: 25): "
+	read POMO_TIME_IN
+
+	# Initialize with defaults if user does not input a value
+	if [ -z $POMO_TIME_IN ]
+	then
+		POMO_TIME=25
+	else
+		POMO_TIME=$POMO_TIME_IN
+	fi
+
 	#POMO_M=$(( $POMO_TIME*60 ))
 	POMO_M=$POMO_TIME
 
 	# In-between-pomo time (in minutes)
 	#BREAK=5
-	echo "Introduce desired short break time (in minutes): "
-	read BREAK
+	echo "Introduce desired short break time in minutes (Default: 5): "
+	read BREAK_IN
+
+	# Initialize with defaults if user does not input a value
+	if [ -z $BREAK_IN ]
+	then
+		BREAK=5
+	else
+		BREAK=$BREAK_IN
+	fi
+
 	#BREAK_M=$(( $BREAK*60 ))
 	BREAK_M=$BREAK
 
 	# Long break time (in minutes)
 	#LBREAK=15
-	echo "Introduce desired long break time (in minutes): "
-	read LBREAK
+	echo "Introduce desired long break time in minutes (Default: 15): "
+	read LBREAK_IN
+
+	# Initialize with defaults if user does not input a value
+	if [ -z $LBREAK_IN ]
+	then
+		LBREAK=15
+	else
+		LBREAK=$LBREAK_IN
+	fi
+
 	#LBREAK_M=$(( $LBREAK*60 ))
 	LBREAK_M=$LBREAK
 
@@ -108,11 +143,11 @@ sleep $POMO_M && notify-send "long break" && mplayer --really-quiet /usr/share/s
 exit 0
 }
 
-
-POMO_NUM=
-POMO_M=
-BREAK_M=
-LBREAK_M=
+# Parameters initialized at default values
+#POMO_NUM=4
+#POMO_M=25
+#BREAK_M=5
+#LBREAK_M=15
 
 [ $# -eq 0 ] && { interactive_mode; exit 0; }
 
