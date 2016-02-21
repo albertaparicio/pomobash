@@ -2,6 +2,65 @@
 
 # Terminal-based Pomodoro Technique chronometer
 
+get_help(){
+echo "pomobash (Pomobash) v0.2 ©Copyright (C) 2016 Albert Aparicio
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Pomobash source code available on GitHub
+(https://github.com/albertaparicio/pomobash)
+
+-------------------------------------------------------------------
+This program can work in one of two modes:
+ · Interactive mode
+ · Command Line mode
+
+In the Interactive mode, the program asks the user for the program's
+parameters, and then runs the pomo sequence.
+
+Interactive mode is activated when the user does not input any
+parameters.
+
+In the Command Line mode, the user inputs the parameters in the
+command line at the time of running Pomobash, and the program runs
+the pomo sequence right away.
+
+Syntax: 
+ - Interactive mode: pomobash
+ - Command Line mode: pomobash [-n number] [-t pomo-time] [-s short] [-l long]
+
+Parameters:
+
+ -n, --pomo-number	 Number of Pomodoro in each cycle
+ -t, --pomo-time	 Time elapsed for each Pomodoro
+
+ -s, --short-break-time	 Duration of the short breaks
+ -l, --long-break-time	 Duration of the long breaks
+
+ -h,  --help    	 get help
+
+Time parameters must be input in minutes." 
+}
+
+usage()
+{
+    echo "pomobash (Pomobash) v1.1.1 ©Copyright (C) 2015 Albert Aparicio
+
+Usage: pomobash [-n number] [-t pomo-time] [-s short] [-l long]
+"
+}
+
 interactive_mode()
 {
 
@@ -71,9 +130,9 @@ while [ "$1" != "" ]; do
         -l | --long-break-time )    	shift
 				LBREAK_M=$1
                                 ;;
-        #-h | --help )           get_help
-        #                        exit 0
-        #                        ;;
+        -h | --help )           get_help
+                                exit 0
+                                ;;
         * )                     usage
                                 exit 1
     esac
